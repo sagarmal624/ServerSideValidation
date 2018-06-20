@@ -24,8 +24,8 @@ public class UserValidator implements Validator {
         ValidationUtils.rejectIfEmpty(errors, "dateTo", "user.dateTo.empty");
 
         User user = (User) target;
-        if (user.getName() != null && user.getName().length() < 5 ||
-                user.getName().length() > 20) {
+        if (user.getName() != null && user.getName().length() > 5 ||
+                user.getName().length() < 20) {
             errors.rejectValue("name", "user.name.size");
         }
 
@@ -38,11 +38,6 @@ public class UserValidator implements Validator {
                 errors.rejectValue("dateFrom", "user.dateFrom.compare");
             }
         }
-        if (user.getPassword() != null && user.getPassword().length() < 5 &&
-                user.getPassword().length() > 15) {
-            errors.rejectValue("password", "user.password.size");
-        }
-
         if (user.getEmailAddress() != null && !EMAIL_REGEX.matcher(user.getEmailAddress()).matches()) {
             errors.rejectValue("emailAddress", "user.email.invalid");
         }

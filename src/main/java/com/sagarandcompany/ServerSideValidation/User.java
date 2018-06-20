@@ -2,12 +2,13 @@ package com.sagarandcompany.ServerSideValidation;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class User {
     private Long id;
     private String name;
+    @Size(min = 4, max = 8)
     private String password;
     private String emailAddress;
     @DateTimeFormat(pattern = "dd/MM/yyyy")

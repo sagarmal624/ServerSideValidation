@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
-    public Object handlePostRequest(@ModelAttribute("user") User user,
+    public Object handlePostRequest(@Valid @ModelAttribute("user") User user,
                                     BindingResult bindingResult, Model model) {
         new UserValidator().validate(user, bindingResult);
         Map map = new HashMap();
